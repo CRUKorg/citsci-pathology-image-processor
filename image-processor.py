@@ -7,16 +7,19 @@ import csv
 import shutil
 
 # file locations
-source_folder = '/data/Trailblazer/lung-all-min/'
-target_folder = '/data/Trailblazer/GitHub/lung_mvp01/'
-server_folder = '//citscitools.cancerresearchuk.org/static/mvp-images/lung_mvp01/'
-file_extn = '.jpg'
-metadata_filename = 'lung_mvp01_metadata.csv'
+source_folder = '/data/Trailblazer/Ki67-samples/annotated'
+target_folder = '/data/Trailblazer/GitHub/bladder_ki67/annotated/'
+server_folder = '//citscitools.cancerresearchuk.org/static/mvp-images/bladder_ki67/annotated/'
+source_file_extn = '.png'
+target_file_extn = '.jpg'
+metadata_filename = 'bladder_ki67_annotated_metadata.csv'
 
 # common data for import
 data_owner = ''
-stain_type = 'lung'
-tumour_type = 'lung'
+stain_type = 'ki67'
+tumour_type = 'bladder'
+
+processing_annotated_images = True  # no need to rename annotated files
 
 # this needs to be changed according to data filename format
 def get_core_id_from_filename(filename):
@@ -58,10 +61,10 @@ def purge(dir, pattern):
 def main():
 
     #empty target folder
-    purge(target_folder, file_extn)
+    purge(target_folder, target_file_extn)
 
     # create metadata for all files in source folder
-    metadata = create_metadata(get_files_in_folder(source_folder, file_extn))
+    metadata = create_metadata(get_files_in_folder(source_folder, source_file_extn))
 
     with open(join(source_folder, metadata_filename), 'w') as csvfile:
         csvwriter = csv.writer(csvfile)
@@ -71,7 +74,12 @@ def main():
         for file_metadata in metadata:
             # copy and rename files
             source_filename = join(source_folder, file_metadata['original_name'])
-            target_filename = join(target_folder, file_metadata['public_name'])
+            if processing_annotated_images:
+                # work out target name = source name but with target extn
+                filename = file_metadata['original_name'].split('.')[0] + target_file_extn
+                target_filename = join(target_folder, filename)
+            else:
+                target_filename = join(target_folder, file_metadata['public_name'])
             # shutil.copy(source_filename, target_filename)
             imagemagick_cmd = 'convert "' + source_filename + '" -resize 3000x3000 -quality 75 -strip ' + target_filename
             os.system(imagemagick_cmd)
