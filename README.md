@@ -24,3 +24,6 @@ The CSV metadata file produced as an output serves as a google spreadsheet impot
 Note that for annotated images are not renamed but they are compressed and converted to jpg format.  The CSV file is
 created for annotated images but is not needed or used.
 
+To get images on to server use git (please chaneg comment!)...
+git add --all && git commit -m 'adding images for xxxxx' && git push origin master
+

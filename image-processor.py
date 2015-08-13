@@ -7,19 +7,19 @@ import csv
 import shutil
 
 # file locations
-source_folder = '/data/Trailblazer/Ki67-samples/annotated'
-target_folder = '/data/Trailblazer/GitHub/bladder_ki67/annotated/'
-server_folder = '//citscitools.cancerresearchuk.org/static/mvp-images/bladder_ki67/annotated/'
-source_file_extn = '.png'
+source_folder = '/data/Trailblazer/Oesophageal Gold Standard'
+target_folder = '/data/Trailblazer/GitHub/oesophageal/'
+server_folder = '//citscitools.cancerresearchuk.org/static/mvp-images/oesophageal/'
+source_file_extn = '.jpg'
 target_file_extn = '.jpg'
-metadata_filename = 'bladder_ki67_annotated_metadata.csv'
+metadata_filename = 'oesophageal_metadata.csv'
 
 # common data for import
-data_owner = ''
-stain_type = 'ki67'
-tumour_type = 'bladder'
+data_owner = 'Will Howatt'
+stain_type = 'cd8'
+tumour_type = 'oesophageal'
 
-processing_annotated_images = True  # no need to rename annotated files
+processing_annotated_images = False  # no need to rename annotated files
 
 # this needs to be changed according to data filename format
 def get_core_id_from_filename(filename):
