@@ -7,9 +7,9 @@ import csv
 import shutil
 
 # file locations
-source_folder = '/data/Trailblazer/Oesophageal Gold Standard'
-target_folder = '/data/Trailblazer/GitHub/oesophageal/'
-server_folder = '//citscitools.cancerresearchuk.org/static/mvp-images/oesophageal/'
+source_folder = '/data/Trailblazer/oesophageal/annotated/'
+target_folder = '/data/Trailblazer/GitHub/oesophageal/annotated/'
+server_folder = '//citscitools.cancerresearchuk.org/static/mvp-images/oesophageal/annotated/'
 source_file_extn = '.jpg'
 target_file_extn = '.jpg'
 metadata_filename = 'oesophageal_metadata.csv'
@@ -19,7 +19,7 @@ data_owner = 'Will Howatt'
 stain_type = 'cd8'
 tumour_type = 'oesophageal'
 
-processing_annotated_images = False  # no need to rename annotated files
+processing_annotated_images = True  # no need to rename annotated files
 
 # this needs to be changed according to data filename format
 def get_core_id_from_filename(filename):
