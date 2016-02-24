@@ -7,19 +7,21 @@ import csv
 import shutil
 
 # file locations
-source_folder = '/data/Trailblazer/oesophageal/annotated/'
-target_folder = '/data/Trailblazer/GitHub/oesophageal/annotated/'
-server_folder = '//citscitools.cancerresearchuk.org/static/mvp-images/oesophageal/annotated/'
+source_folder = '/data/Trailblazer/P53 Trail blazer Tutorial set'
+target_folder = '/data/Trailblazer/GitHub/bladder-p53'  # note that this folder must already exist - script does not create it
+server_folder = '//citscitools.cancerresearchuk.org/static/mvp-images/bladder-p53'
 source_file_extn = '.jpg'
 target_file_extn = '.jpg'
-metadata_filename = 'oesophageal_metadata.csv'
+metadata_filename = 'bladder_p53_gs_metadata.csv'
+start_index_after = 0 # images will be numbered sequentially from the number AFTER this value (normally zero)
+delete_existing_files = False  # True when recreating whole folder structure, False to make additions
 
 # common data for import
-data_owner = 'Will Howatt'
-stain_type = 'cd8'
-tumour_type = 'oesophageal'
+data_owner = 'Gareth Thomas'
+stain_type = 'p53'
+tumour_type = 'bladder'
 
-processing_annotated_images = True  # no need to rename annotated files
+processing_annotated_images = False  # no need to rename annotated files
 
 # this needs to be changed according to data filename format
 def get_core_id_from_filename(filename):
@@ -36,7 +38,7 @@ def get_files_in_folder(path, extn):
 
 def create_metadata (files):
     metadata = []
-    index = 0
+    index = start_index_after
     for f in files:
         file_metadata = {}
         index += 1
@@ -60,8 +62,9 @@ def purge(dir, pattern):
 
 def main():
 
-    #empty target folder
-    purge(target_folder, target_file_extn)
+    if delete_existing_files:
+        #empty target folder
+        purge(target_folder, target_file_extn)
 
     # create metadata for all files in source folder
     metadata = create_metadata(get_files_in_folder(source_folder, source_file_extn))
@@ -81,7 +84,7 @@ def main():
             else:
                 target_filename = join(target_folder, file_metadata['public_name'])
             # shutil.copy(source_filename, target_filename)
-            imagemagick_cmd = 'convert "' + source_filename + '" -resize 3000x3000 -quality 75 -strip ' + target_filename
+            imagemagick_cmd = '/usr/local/bin/convert "' + source_filename + '" -resize 3000x3000 -quality 75 -strip ' + target_filename
             os.system(imagemagick_cmd)
             # write metadata to csv
             line = [ file_metadata[key] for key in csv_columns]
