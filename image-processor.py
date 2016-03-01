@@ -7,25 +7,29 @@ import csv
 import shutil
 
 # file locations
-source_folder = '/data/Trailblazer/P53 Trail blazer Tutorial set'
-target_folder = '/data/Trailblazer/GitHub/bladder-p53'  # note that this folder must already exist - script does not create it
-server_folder = '//citscitools.cancerresearchuk.org/static/mvp-images/bladder-p53'
+source_folder = '/data/Trailblazer/EGFR-all-images'
+target_folder = '/data/Trailblazer/GitHub/lung-egfr-v2'  # note that this folder must already exist - script does not create it
+server_folder = '//citscitools.cancerresearchuk.org/static/mvp-images/lung-egfr-v2'
 source_file_extn = '.jpg'
 target_file_extn = '.jpg'
-metadata_filename = 'bladder_p53_gs_metadata.csv'
+metadata_filename = 'lung-egfr-metadata.csv'
 start_index_after = 0 # images will be numbered sequentially from the number AFTER this value (normally zero)
-delete_existing_files = False  # True when recreating whole folder structure, False to make additions
+delete_existing_files = True  # True when recreating whole folder structure, False to make additions
 
 # common data for import
+tumour_type = 'lung'
+stain_type = 'egfr'
 data_owner = 'Gareth Thomas'
-stain_type = 'p53'
-tumour_type = 'bladder'
+dataset_id = 'gt01'
+index_format = '02d'
 
 processing_annotated_images = False  # no need to rename annotated files
 
 # this needs to be changed according to data filename format
 def get_core_id_from_filename(filename):
-    return filename.split()[0]
+    start = filename.find('_',4) + 1
+    end = filename.rfind('_')
+    return filename[start:end]
 
 # no need to change anything below here
 
@@ -42,12 +46,15 @@ def create_metadata (files):
     for f in files:
         file_metadata = {}
         index += 1
+        formatted_index = format(index, index_format)
         # data that varies by file
         file_metadata['original_name'] = f
-        file_metadata['public_name'] = '-'.join((stain_type,format(index, '02d'))) + '.jpg'
+        #  file_metadata['public_name'] = '-'.join((stain_type,format(index, '02d'))) + '.jpg'
+        file_metadata['public_name'] = '-'.join((tumour_type, stain_type, dataset_id, formatted_index)) + target_file_extn
         file_metadata['url_b'] = join(server_folder, file_metadata['public_name'])
         file_metadata['slide_id'] = 'unknown'
         file_metadata['core_id'] = get_core_id_from_filename(f)
+        file_metadata['core_index'] = formatted_index
         # data common to all files
         file_metadata['data_owner'] = data_owner
         file_metadata['stain_type'] = stain_type
