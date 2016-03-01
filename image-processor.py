@@ -33,7 +33,7 @@ def get_core_id_from_filename(filename):
 
 # no need to change anything below here
 
-csv_columns = ['original_name', 'url_b', 'slide_id', 'core_id', 'data_owner', 'stain_type', 'tumour_type']
+csv_columns = ['original_name', 'url_b', 'slide_id', 'core_id', 'core_index', 'data_owner', 'stain_type', 'tumour_type']
 
 def get_files_in_folder(path, extn):
     files = [f for f in listdir(path) if (isfile(join(path, f)) and f.endswith(extn))]
