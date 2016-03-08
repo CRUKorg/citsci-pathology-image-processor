@@ -1,9 +1,9 @@
-# CRUK Trailblazer image processor project
+# CRUK Trailblazer pathology image processor script
 
 ## Basic idea
 
 This Python script is used to process to transform tissue micro-array (TMA) images for use in
-Cancer Research UK's Trailblazer project.  It does teh following:
+Cancer Research UK's Trailblazer project.  It does the following:
  
 - reads images from a source folder, 
 - transforms them,
