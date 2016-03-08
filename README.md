@@ -2,7 +2,7 @@
 
 ## Basic idea
 
-This Python script is used to process to transform tissue micro-array (TMA) images for use in
+This Python script is used to transform tissue micro-array (TMA) images for use in
 Cancer Research UK's Trailblazer project.  It does the following:
  
 - reads images from a source folder, 
