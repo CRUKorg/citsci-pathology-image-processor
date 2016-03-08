@@ -3,8 +3,16 @@
 ## Basic idea
 
 This Python script is used to process to transform tissue micro-array (TMA) images for use in
-Cancer Research UK's Trailblazer project.  It takes images from a source folder, transforms them,
-writes out anonymised versions to a target folder and creates a file of image metadata to describe the transformed images
+Cancer Research UK's Trailblazer project.  It does teh following:
+ 
+- reads images from a source folder, 
+- transforms them,
+- writes out anonymised versions to a target folder and 
+- creates a file of image metadata to describe the transformed images
+
+## Prerequisites
+
+imagemagick (6.9.3-0 or later) must be installed.  Can be downloaded from [http://www.imagemagick.org/script/binary-releases.php]
 
 ## Image transformation
 
@@ -32,13 +40,15 @@ Images are anonymised by renaming them based on tumour and stain type and adding
 
 The CSV metadata file produced as an output serves as a google spreadsheet import for PyBossa
 
-Note that for annotated images are not renamed but they are compressed and converted to jpg format.  The CSV file is
-created for annotated images but is not needed or used.
+Note that annotated images are not renamed but they are compressed and converted to jpg format.  
+Annotated images are normally used in the tutorial and so do not need to be uploaded as tasks.
+The CSV file is created for annotated images but is not needed or used.
 
 ## Image metadata
 
 Image names are changed to ensure anonymity.  As a consequence any information encoded in the name is lost.
-To preserve this, and add extra metadata, a metadata file is created as part of the transformation process.  It is placed in the **source** folder
+To preserve this, and add extra metadata, a metadata file is created as part of the transformation process.  
+It is placed in the **source** folder
 Some metadata is image specific, other is common to the whole batch of images being transformed.
 Common metadata values are set as constants within the script:
  - collection - the name of the collection from which these images was taken

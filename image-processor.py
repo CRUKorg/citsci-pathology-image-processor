@@ -9,7 +9,8 @@ import shutil
 # file locations
 source_folder = '/data/Trailblazer/EGFR-all-images'
 target_folder = '/data/Trailblazer/GitHub/lung-egfr-v2'  # note that this folder must already exist - script does not create it
-server_folder = '//citscitools.cancerresearchuk.org/static/mvp-images/lung-egfr-v2'
+# server_folder = '//citscitools.cancerresearchuk.org/static/mvp-images/lung-egfr-v2'
+server_folder = '/static/trailblazer/images/lung_egfr'
 source_file_extn = '.jpg'
 target_file_extn = '.jpg'
 metadata_filename = 'lung-egfr-metadata.csv'
