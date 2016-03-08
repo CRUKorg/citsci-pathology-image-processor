@@ -69,7 +69,7 @@ These are all set up as constants at the top of the script and can be changed as
 
 Copyright 2016 Cancer Research UK
 
-Source Code License: The GNU Affero General Public License, either version 3 of the License or (at your option) any later version. (see gpl.txt file)
+Source Code License: The GNU Affero General Public License, either version 3 of the License or (at your option) any later version. (See agpl.txt file)
 
 The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure 
 cooperation with the community in the case of network server software.
