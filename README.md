@@ -74,3 +74,5 @@ Source Code License: The GNU Affero General Public License, either version 3 of 
 The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure 
 cooperation with the community in the case of network server software.
 
+Documentation is under a Creative Commons Attribution License version 3.
+
